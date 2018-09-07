@@ -6,7 +6,7 @@ export const commonParams = {
   format: 'jsonp'
 }
 
-export const opt = {
+export const optRecommends = {
   param: 'jsonpCallback'
 }
 

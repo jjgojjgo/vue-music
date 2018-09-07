@@ -2,7 +2,9 @@
   <div>
     <mheader></mheader>
     <navbar></navbar>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

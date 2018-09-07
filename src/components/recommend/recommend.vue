@@ -13,7 +13,7 @@
 </template>
 
 <script type="text/javascript">
-import getRecommend from '../../api/getRecommend.js'
+import {getRecommends} from '../../api/recommend.js'
 import {ERR_OK} from '../../api/config'
 import Slider from '../../base/slider/slider'
 export default{
@@ -23,11 +23,11 @@ export default{
     }
   },
   created () {
-    this._getRecommend()
+    this._getRecommends()
   },
   methods: {
-    _getRecommend () {
-      getRecommend().then(res => {
+    _getRecommends () {
+      getRecommends().then(res => {
         if (res.code === ERR_OK) {
           console.log(res.data.slider)
           this.recommends = res.data.slider

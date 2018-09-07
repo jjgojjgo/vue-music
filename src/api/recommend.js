@@ -1,7 +1,7 @@
 import jsonp from '../common/js/jsonp.js'
-import {commonParams, opt} from './config.js'
+import {commonParams, optRecommends} from './config.js'
 
-export default function () {
+export function getRecommends () {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
   const data = {
     ...commonParams,
@@ -9,5 +9,5 @@ export default function () {
     uin: 0,
     needNewCode: 1
   }
-  return jsonp(url, data, opt)
+  return jsonp(url, data, optRecommends)
 }

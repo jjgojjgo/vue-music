@@ -1,6 +1,6 @@
 <template>
-  <div class="slider" ref="slider">
-   <div class="slider-group" ref="sliderGroup">
+  <div class="slider over-h" ref="slider">
+   <div class="slider-group over-h" ref="sliderGroup">
      <slot name="slider-item"></slot>
    </div>
    <div class="dots">
@@ -16,7 +16,8 @@ export default{
   data () {
     return {
       dots: [],
-      currentPageIndex: 0
+      currentPageIndex: 0,
+      timer: null
     }
   },
   props: {
@@ -37,6 +38,12 @@ export default{
     this.initDots()
     this.setSliderGroupWidth()
     this.initBScroll()
+    if (this.autoPlay === true) {
+      this.play()
+    }
+  },
+  destroyed () {
+    clearInterval(this.timer)
   },
   methods: {
     setSliderGroupWidth () {
@@ -64,15 +71,12 @@ export default{
         momentum: false,
         snap: {
           loop: this.loop,
-          threshold: 0.1,
-          speed: this.interval
+          threshold: 0.5
         }
       })
       this.bscroll.on('scrollEnd', () => {
+        console.log('in scrollEnd')
         let pageIndex = this.bscroll.getCurrentPage().pageX
-        if (this.loop) {
-          pageIndex -= 1
-        }
         this.currentPageIndex = pageIndex
         console.log(this.currentPageIndex)
       })
@@ -80,6 +84,19 @@ export default{
     initDots () {
       this.dots = new Array(this.$refs.sliderGroup.children.length)
       console.log(this.dots)
+    },
+    play () {
+      this.timer = setInterval(() => {
+        this.currentPageIndex++
+        if (this.currentPageIndex > 4) {
+          this.currentPageIndex = 0
+        }
+        this.bscroll.goToPage(this.currentPageIndex)
+      }, this.interval)
+      this.$refs.slider.addEventListener('touchstart', () => {
+        clearInterval(this.timer)
+        this.play()
+      })
     }
   }
 };
@@ -89,10 +106,10 @@ export default{
   @import '../../common/stylus/variable.styl';
   .slider
     position: relative
-    overflow hidden
+    /*overflow hidden*/
     width: 100vw
     .slider-group
-      overflow: hidden
+      /*overflow: hidden*/
       .slider-item
         float: left
         a

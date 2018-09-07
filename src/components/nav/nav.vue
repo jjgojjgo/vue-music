@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav ft-14 col-gray d-f t-center flex-row">
     <router-link tag="div" to="/recommend">
       <span>推荐</span>
     </router-link>
@@ -22,17 +22,17 @@ export default{};
 <style lang="stylus">
   @import '../../common/stylus/variable.styl'
   .nav
-    display: flex
-    flex-direction: row
-    color: $color-gray
-    font-size: 14px
+    /*display: flex*/
+    /*flex-direction: row*/
+    /*color: $color-gray
+    font-size: 14px*/
     height: 1.173333rem
     line-height: 1.173333rem
-    text-align: center
+    /*text-align: center*/
     div
       flex: 1
     .router-link-active span
       padding-bottom: 4px
-      color: $color-yellow
-      border-bottom: $border-yellow
+      color: $col-yellow
+      border-bottom: $bd-yellow
 </style>
