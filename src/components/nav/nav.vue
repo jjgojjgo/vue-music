@@ -28,6 +28,7 @@ export default{};
     font-size: 14px*/
     height: 1.173333rem
     line-height: 1.173333rem
+    // margin-top: 1.173333rem
     /*text-align: center*/
     div
       flex: 1

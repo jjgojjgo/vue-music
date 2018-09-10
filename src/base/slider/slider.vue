@@ -4,6 +4,7 @@
      <slot name="slider-item"></slot>
    </div>
    <div class="dots">
+     <!-- eslint-disable-next-line -->
      <span :class="{'active' : index === currentPageIndex}" v-for="(item, index) in dots">{{item}}</span>
    </div>
  </div>
@@ -110,15 +111,6 @@ export default{
     width: 100vw
     .slider-group
       /*overflow: hidden*/
-      .slider-item
-        float: left
-        a
-          display: block
-          width: 100%
-          height: 100%
-          img
-            display block
-            width: 100%
     .dots
       position: absolute
       text-align: center

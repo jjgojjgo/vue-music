@@ -15,6 +15,10 @@ export default{};
   .m-header
     /*font-size: $font0
     text-align: center*/
+    // top: 0
+    // left: 0
+    // z-index: 1000
+    // margin-bottom: 1.173333rem
     .logo
       /*display: inline-block
       vertical-align: top*/
