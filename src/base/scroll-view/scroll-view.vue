@@ -9,7 +9,7 @@ export default{
   props: {
     probeType: {
       type: Number,
-      default: 0
+      default: 3
     },
     click: {
       type: Boolean,
@@ -42,6 +42,7 @@ export default{
   .scroll-view
     position: fixed
     left: 0
+    right: 0
     top: 2.346667rem
     bottom: 0
     overflow: hidden
