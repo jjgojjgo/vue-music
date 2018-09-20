@@ -14,7 +14,7 @@
         <div class="recommend-list">
           <h1 class="list-title t-center col-yellow ft-14">热门歌单推荐</h1>
           <ul>
-            <li class="disc d-f flex-row pd-l-40 pd-r-40 mar-b-40" v-for="item in discList" :key="item.id">
+            <li class="disc d-f flex-row pd-l-40 pd-r-40 pd-b-40" v-for="item in discList" :key="item.id">
               <img :src="item.imgurl" class="mar-r-40">
               <div class="d-f flex-column ft-14 flex-1">
                 <span class="d-b col-white">{{item.creator.name}}</span>
@@ -23,6 +23,7 @@
             </li>
           </ul>
         </div>
+        <loading v-if="discList.length === 0"></loading>
       </div>
     </scrollview>
   </div>
@@ -31,6 +32,7 @@
 <script type="text/javascript">
 import {getRecommends, getDiscList} from '../../api/recommend.js'
 import {ERR_OK} from '../../api/config'
+import Loading from '../../base/loading/loading'
 import scrollView from '../../base/scroll-view/scroll-view'
 import Slider from '../../base/slider/slider'
 export default{
@@ -42,7 +44,9 @@ export default{
   },
   created () {
     this._getRecommends()
-    this._getDiscList()
+    setTimeout(() => {
+      this._getDiscList()
+    }, 1000)
   },
   methods: {
     _getRecommends () {
@@ -65,7 +69,8 @@ export default{
   },
   components: {
     slider: Slider,
-    scrollview: scrollView
+    scrollview: scrollView,
+    loading: Loading
   }
 };
 </script>
