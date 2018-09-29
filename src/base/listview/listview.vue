@@ -2,10 +2,10 @@
   <div class="list-view">
     <scrollview ref="scrollView">
       <ul slot="scroll-view-content" class="ft-14 col-gray">
-        <li class="singerGroup pd-b-40" v-for="(singerGroup, index) in singerList" :key="singerGroup.id">
-          <span :class="{'title-fixed' : index === currentIndex}" class="pd-l-40 bg-gray2">{{singerGroup.title}}</span>
+        <li class="singerGroup pd-b-40" v-for="singerGroup in singerList" :key="singerGroup.id">
+          <span class="pd-l-40 bg-gray2">{{singerGroup.title}}</span>
           <ul>
-            <li class="singer pd-l-60 pd-t-40" v-for="singer in singerGroup.items" :key="singer.id">
+            <li @click="selectSinger(singer)" class="singer pd-l-60 pd-t-40" v-for="singer in singerGroup.items" :key="singer.id">
               <img :src="singer.avatar"/>
               <span class="mar-l-40">{{singer.name}}</span>
             </li>
@@ -13,6 +13,7 @@
         </li>
       </ul>
     </scrollview>
+    <!-- <div class="title-fixed ft-14 col-gray bg-gray2 pd-l-40" v-if="fixedTitle !== ''">{{fixedTitle}}</div> -->
     <div class="shortcut-list bg-gray3">
       <ul ref="test">
         <li :class="{'high-color' : index === currentIndex}" class="ft-12 col-gray t-center" v-for="(shortcut, index) in shortcutList" :key="shortcut.id" @touchstart="onShortcutTouchstart" @touchmove="onShortcutTouchmove" :data-shortcut-index="index">
@@ -78,6 +79,9 @@ export default {
     }
   },
   methods: {
+    selectSinger (singer) {
+      this.$emit('selectSinger', singer)
+    },
     onShortcutTouchstart (event) {
       startY = event.changedTouches[0].clientY
       let shortcutIndex = event.changedTouches[0].target.dataset.shortcutIndex
@@ -101,6 +105,14 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
+  .title-fixed
+    position: absolute
+    left: 0
+    right: 0
+    top: 2.346667rem
+    height: 0.8rem
+    line-height: 0.8rem
+    // color: #fff
   .high-color
       color: #ffcd32 !important
   .singerGroup>span

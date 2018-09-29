@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-view" ref="scrollView">
+  <div class="scroll-view bg-black" ref="scrollView">
       <slot name="scroll-view-content"></slot>
   </div>
 </template>

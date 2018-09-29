@@ -1,6 +1,7 @@
 <template>
   <div class="singer">
-    <listview :singerList="singerList"></listview>
+    <listview @selectSinger="selectSinger" :singerList="singerList"></listview>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,7 +9,7 @@
 import {Singer} from '../../common/js/singer'
 import {getSingerList} from '../../api/singer'
 import {ERR_OK, HOT_NAME, HOT_SINGER_LEN} from '../../api/config'
-// import scrollView from '../../base/scroll-view/scroll-view'
+import {mapMutations} from 'vuex'
 import listView from '../../base/listview/listview'
 export default{
   data () {
@@ -20,11 +21,18 @@ export default{
     this._getSingerList()
   },
   methods: {
+    ...mapMutations(['setSinger']),
+    selectSinger (singer) {
+      console.log(singer)
+      this.setSinger(singer)
+      this.$router.push({
+        path: `/singer/${singer.id}`
+      })
+    },
     _getSingerList () {
       getSingerList().then(res => {
         console.log(res)
         if (res.code === ERR_OK) {
-          // this.singerList = res.data
           this.singerList = this.normalizeSingers(res.data.list)
           console.log(this.singerList)
         }
@@ -74,17 +82,9 @@ export default{
     }
   },
   components: {
-    // scrollview: scrollView
     listview: listView
   }
 };
 </script>
 
-<style lang="stylus" scoped>
-  // .singer
-  //   position: fixed
-  //   top: 2.346667rem
-  //   left: 0
-  //   bottom: 0
-  //   overflow: hidden
-</style>
+<style lang="stylus" scoped></style>

@@ -14,6 +14,10 @@ export const optSingerList = {
   param: 'jsonpCallback'
 }
 
+export const optSingerDetail = {
+  param: 'jsonpCallback'
+}
+
 export const ERR_OK = 0
 
 export const HOT_NAME = '热门'
